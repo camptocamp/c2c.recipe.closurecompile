@@ -1,0 +1,17 @@
+Usage
+-----
+Minimal buildout config example:
+
+[buildout]
+parts = jsbuild
+
+[jsbuild]
+recipe = c2c.recipe.closurecompile
+compiler = ${closure-compile:destination}/compiler.jar
+input = foo/bar.js
+output = foo/bar.min.js
+
+[closure-compile]
+recipe = hexagonit.recipe.download
+url = http://closure-compiler.googlecode.com/files/compiler-latest.zip
+
