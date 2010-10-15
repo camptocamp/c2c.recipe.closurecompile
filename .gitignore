@@ -1,0 +1,5 @@
+*.pyc
+build
+dist
+c2c.recipe.closurecompile.egg-info
+
