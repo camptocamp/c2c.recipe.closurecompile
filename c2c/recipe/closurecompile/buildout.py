@@ -9,11 +9,10 @@ class ClosureCompile(object):
         basedir = buildout['buildout']['directory']
 
         self.compiler = options.get('compiler')
-        # fixme: validate self.compiler
         self.input = [os.path.join(basedir, f) for f in options.get('input').split()]
         self.output = os.path.join(basedir, options.get('output'))
         self.level = options.get('level', 'WHITESPACE_ONLY')
-        
+
     def install(self):
         cmd  = "java -jar %s "%self.compiler
         cmd += "--js %s --js_output_file %s "%(' '.join(self.input), self.output)
@@ -25,7 +24,8 @@ class ClosureCompile(object):
         errors = tempfile.TemporaryFile()
         retcode = call(cmd.split(), stdout=errors, stderr=STDOUT)
 
+        # fixme: check if retcode != 0
         return self.output
-        
+
     update = install
 
