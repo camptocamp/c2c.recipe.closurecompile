@@ -16,6 +16,7 @@ setup(
     long_description = open('README').read(),
 
     classifiers = [
+        'Development Status :: 2 - Pre-Alpha',
         'Framework :: Buildout',
         'Intended Audience :: Developers',
         'Topic :: Software Development :: Build Tools',
@@ -23,7 +24,7 @@ setup(
         'License :: OSI Approved :: MIT License'
     ],
 
-    zip_safe = False, 
+    zip_safe = False,
     install_requires = ['zc.buildout'],
     packages = find_packages(exclude=['ez_setup']),
     namespace_packages = ['c2c', 'c2c.recipe'],
