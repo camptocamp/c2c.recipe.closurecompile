@@ -16,6 +16,7 @@ output = foo/bar.min.js
 recipe = hexagonit.recipe.download
 url = http://closure-compiler.googlecode.com/files/compiler-latest.zip
 
-The default 'level' is WHITESPACE_ONLY.
-If 'output' is not specified, the minified version is written into 'input'.
+'level' is WHITESPACE_ONLY, SIMPLE_OPTIMIZATIONS or
+ADVANCED_OPTIMIZATIONS,  defaults is WHITESPACE_ONLY.
 
+If 'output' is not specified, the minified version is written into 'input'.
