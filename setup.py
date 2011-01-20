@@ -5,15 +5,15 @@ from setuptools import setup, find_packages
 
 setup(
     name = 'c2c.recipe.closurecompile',
-    version = '0.1',
+    version = '0.2',
     license = 'MIT License',
 
     author  = 'Frederic Junod',
     author_email = 'frederic.junod@camptocamp.com',
-    url = 'http://github.com/fredj/c2c.recipe.closurecompile',
+    url = 'https://github.com/fredj/c2c.recipe.closurecompile',
 
     description = 'A buildout recipe to compile javascript with the Google Closure Compiler',
-    long_description = open('README').read(),
+    long_description = open('README.rst').read(),
 
     classifiers = [
         'Development Status :: 2 - Pre-Alpha',
