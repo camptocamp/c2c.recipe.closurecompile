@@ -10,7 +10,7 @@ setup(
 
     author  = 'Frederic Junod',
     author_email = 'frederic.junod@camptocamp.com',
-    url = 'https://github.com/fredj/c2c.recipe.closurecompile',
+    url = 'https://github.com/camptocamp/c2c.recipe.closurecompile',
 
     description = 'A buildout recipe to compile javascript with the Google Closure Compiler',
     long_description = open('README.rst').read(),
