@@ -30,7 +30,7 @@ class ClosureCompile(object):
             self.output = output.name
 
         cmd  = "java -jar %s "%self.compiler
-        cmd += "--js %s --js_output_file %s "%(' '.join(self.input), self.output)
+        cmd += "--js %s --js_output_file %s "%(' --js '.join(self.input), self.output)
         cmd += "--compilation_level %s "%self.level
 
         logging.getLogger(self.name).debug("running '%s'"%cmd)
