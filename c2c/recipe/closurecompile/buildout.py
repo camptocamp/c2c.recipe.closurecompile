@@ -10,6 +10,10 @@ class ClosureCompile(object):
         basedir = buildout['buildout']['directory']
 
         self.compiler = options.get('compiler')
+
+        if options.get('input') is None:
+            raise zc.buildout.UserError("'input' option is missing.")
+
         self.input = [os.path.join(basedir, f) for f in options.get('input').split()]
 
         if options.get('output') is None:
