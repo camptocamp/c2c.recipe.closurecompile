@@ -11,6 +11,8 @@ class ClosureCompile(object):
 
         self.compiler = options.get('compiler')
 
+        self.source_map = os.path.join(basedir, options.get('source_map')) if options.get('source_map') else None
+
         if options.get('input') is None:
             raise zc.buildout.UserError("'input' option is missing.")
 
@@ -29,13 +31,20 @@ class ClosureCompile(object):
         self.level = options.get('level', 'WHITESPACE_ONLY')
 
     def install(self):
+        installed_files = []
 
         if self.inplace:
             output = tempfile.NamedTemporaryFile()
             self.output = output.name
+            installed_files.extend(self.input)
+        else:
+            installed_files.append(self.output)
 
         cmd  = "java -jar %s "%self.compiler
         cmd += "--js %s --js_output_file %s "%(' --js '.join(self.input), self.output)
+        if self.source_map:
+            cmd += "--create_source_map %s "%self.source_map
+            installed_files.append(self.source_map)
         if self.externs:
             cmd += "--externs %s "%" --externs ".join(self.externs)
         cmd += "--compilation_level %s "%self.level
@@ -51,9 +60,7 @@ class ClosureCompile(object):
             output.seek(0)
             open(self.input[0], 'w').write(output.read())
             output.close()
-            return self.input
-        else:
-            return self.output
+
+        return installed_files
 
     update = install
-
