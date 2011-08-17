@@ -16,6 +16,7 @@ Minimal buildout config example::
     recipe = c2c.recipe.closurecompile
     compiler = path/to/closure-compiler.jar
     level = SIMPLE_OPTIMIZATIONS
+    externs = externs/a.js externs/b.js
     input = foo/bar.js
     output = foo/bar.min.js
 
@@ -25,6 +26,7 @@ Where:
   * ``level``: The compilation level: ``WHITESPACE_ONLY``,
     ``SIMPLE_OPTIMIZATIONS`` or ``ADVANCED_OPTIMIZATIONS``. Default is
     ``WHITESPACE_ONLY``.
+  * ``externs``: A list of optional externs files.
   * ``input``: The files to compress separated with spaces. The path
     can be absolute or relative to the buildout directory.
   * ``output``: The path to the minified file. If omitted, the result
