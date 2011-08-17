@@ -15,6 +15,7 @@ class ClosureCompile(object):
             raise zc.buildout.UserError("'input' option is missing.")
 
         self.input = [os.path.join(basedir, f) for f in options.get('input').split()]
+        self.externs = [os.path.join(basedir, f) for f in options.get('externs', '').split()]
 
         if options.get('output') is None:
             if len(self.input) == 1:
@@ -35,6 +36,8 @@ class ClosureCompile(object):
 
         cmd  = "java -jar %s "%self.compiler
         cmd += "--js %s --js_output_file %s "%(' --js '.join(self.input), self.output)
+        if self.externs:
+            cmd += "--externs %s "%" --externs ".join(self.externs)
         cmd += "--compilation_level %s "%self.level
 
         logging.getLogger(self.name).debug("running '%s'"%cmd)
