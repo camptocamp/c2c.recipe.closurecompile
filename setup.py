@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = 'c2c.recipe.closurecompile',
-    version = '0.2.1',
+    version = '0.3',
     license = 'MIT License',
 
     author  = 'Frederic Junod',
