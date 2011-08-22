@@ -20,6 +20,7 @@ Minimal buildout config example::
     externs = externs/a.js externs/b.js
     input = foo/bar.js
     output = foo/bar.min.js
+    output_mode = compiled
 
 Where:
 
@@ -33,7 +34,11 @@ Where:
     can be absolute or relative to the buildout directory.
   * ``output``: The path to the minified file. If omitted, the result
     is saved to ``input`` (which must be unique).
-
+  * ``output_mode``: The type of output to generate from this script.
+    Options are "list" for a list of filenames, "script" for a single
+    script containing the contents of all the files, or "compiled" to
+    produce compiled output with the Closure Compiler.  Default is
+    "compiled".
 
 Getting the jar
 ---------------

@@ -29,6 +29,7 @@ class ClosureCompile(object):
             self.inplace = False
 
         self.level = options.get('level', 'WHITESPACE_ONLY')
+        self.output_mode = options.get('output_mode', 'compiled')
 
     def install(self):
         installed_files = []
@@ -40,26 +41,30 @@ class ClosureCompile(object):
         else:
             installed_files.append(self.output)
 
-        cmd  = "java -jar %s "%self.compiler
-        cmd += "--js %s --js_output_file %s "%(' --js '.join(self.input), self.output)
-        if self.source_map:
-            cmd += "--create_source_map %s "%self.source_map
-            installed_files.append(self.source_map)
-        if self.externs:
-            cmd += "--externs %s "%" --externs ".join(self.externs)
-        cmd += "--compilation_level %s "%self.level
+        if self.output_mode == 'list':
+            pass
+        elif self.output_mode == 'script':
+            pass
+        elif self.output_mode == 'compiled':
+            cmd  = "java -jar %s "%self.compiler
+            cmd += "--js %s --js_output_file %s "%(' --js '.join(self.input), self.output)
+            if self.source_map:
+                cmd += "--create_source_map %s "%self.source_map
+                installed_files.append(self.source_map)
+            if self.externs:
+                cmd += "--externs %s "%" --externs ".join(self.externs)
+            cmd += "--compilation_level %s "%self.level
 
-        logging.getLogger(self.name).debug("running '%s'"%cmd)
+            logging.getLogger(self.name).debug("running '%s'"%cmd)
 
-        errors = tempfile.TemporaryFile()
-        retcode = call(cmd.split(), stdout=errors, stderr=STDOUT)
+            errors = tempfile.TemporaryFile()
+            retcode = call(cmd.split(), stdout=errors, stderr=STDOUT)
+            # fixme: check if retcode != 0
 
-        # fixme: check if retcode != 0
-
-        if self.inplace:
-            output.seek(0)
-            open(self.input[0], 'w').write(output.read())
-            output.close()
+            if self.inplace:
+                output.seek(0)
+                open(self.input[0], 'w').write(output.read())
+                output.close()
 
         return installed_files
 
