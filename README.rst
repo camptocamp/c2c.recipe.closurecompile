@@ -24,16 +24,20 @@ Minimal buildout config example::
 
 Where:
 
-  * ``compiler``: The path to the compiler jar file.
+  * ``compiler``: The location of the compiler jar file.
   * ``level``: The compilation level: ``WHITESPACE_ONLY``,
     ``SIMPLE_OPTIMIZATIONS`` or ``ADVANCED_OPTIMIZATIONS``. Default is
     ``WHITESPACE_ONLY``.
   * ``source_map``: Path to the source map file. Optional.
   * ``externs``: A list of optional externs files.
   * ``input``: The files to compress separated with spaces. The path
-    can be absolute or relative to the buildout directory.
-  * ``output``: The path to the minified file. If omitted, the result
-    is saved to ``input`` (which must be unique).
+    can be absolute or relative to the buildout directory. These files
+    are also used to calculate the dependencies in addition to the
+    ``namespace`` option.
+  * ``root``: The list of paths that should be traversed to build the
+    dependencies.
+  * ``namespace``: One or more namespaces to calculate dependencies for.
+  * ``output``: The path to the minified file.
   * ``output_mode``: The type of output to generate from this script.
     Options are "list" for a list of filenames, "script" for a single
     script containing the contents of all the files, or "compiled" to
