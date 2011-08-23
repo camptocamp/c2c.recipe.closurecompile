@@ -44,6 +44,32 @@ Where:
     produce compiled output with the Closure Compiler.  Default is
     "compiled".
 
+depswriter
+----------
+
+Writes dependency files with `DepsWriter
+<http://code.google.com/closure/library/docs/depswriter.html>`_.
+
+Minimal buildout config example::
+
+    [buildout]
+    parts = depswriter
+
+    [closure-compile]
+    recipe = c2c.recipe.closurecompile:depswriter
+    root_with_prefix = myproject ../../myproject
+                       ../source/ ../../../../source/
+    output = path/to/deps.js
+
+Where:
+
+  * ``root_with_prefix``: A list of paths and prefixes.
+  * ``output``: The path to the dependency file, can be absolute or
+    relative to the buildout directory.
+
+Note that the ``root`` and the ``path_with_depspath`` options from the
+original depswriter.py script are not yet supported.
+
 Getting the jar
 ---------------
 

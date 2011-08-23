@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = 'c2c.recipe.closurecompile',
-    version = '0.3',
+    version = '0.3.1',
     license = 'MIT License',
 
     author  = 'Frederic Junod',
@@ -28,5 +28,6 @@ setup(
     install_requires = ['zc.buildout'],
     packages = find_packages(exclude=['ez_setup']),
     namespace_packages = ['c2c', 'c2c.recipe'],
-    entry_points = {'zc.buildout' : ['default = c2c.recipe.closurecompile.buildout:ClosureCompile']}
+    entry_points = {'zc.buildout' : ['default = c2c.recipe.closurecompile.buildout:ClosureCompile',
+                                     'depswriter = c2c.recipe.closurecompile.depswriter:DepsWriter']}
 )
