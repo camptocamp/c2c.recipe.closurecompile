@@ -85,6 +85,9 @@ class ClosureCompile(object):
 
             errors = tempfile.TemporaryFile()
             retcode = call(cmd.split(), stdout=errors, stderr=STDOUT)
+            if retcode != 0:
+                errors.seek(0)
+                raise Exception("Closure compiler returned with error: \n%s\n"%errors.read())
 
         return installed_files
 
