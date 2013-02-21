@@ -21,6 +21,7 @@ Minimal buildout config example::
     input = foo/bar.js
     output = foo/bar.min.js
     output_mode = compiled
+    compiler_flags = --generate_exports
 
 Where:
 
@@ -43,6 +44,9 @@ Where:
     script containing the contents of all the files, or "compiled" to
     produce compiled output with the Closure Compiler.  Default is
     "compiled".
+  * ``compiler_flags``: A space seperated list of additional compiler flags
+    for the Closure Compiler. They are passed to the compiler as specified.
+    Optional.
 
 depswriter
 ----------

@@ -38,6 +38,8 @@ class ClosureCompile(object):
         self.level = options.get('level', 'WHITESPACE_ONLY')
         self.output_mode = options.get('output_mode', 'compiled')
 
+        self.compilerflags = options.get('compiler_flags', '')
+
     def install(self):
         installed_files = []
 
@@ -74,6 +76,8 @@ class ClosureCompile(object):
             cmd  = "java -jar %s "%self.compiler
             cmd += "--js %s "%(" --js ".join([source.path for source in deps]))
             cmd += "--js_output_file %s "%(self.output)
+            if self.compilerflags != '':
+                cmd += "%s "%(self.compilerflags)
             if self.source_map:
                 cmd += "--create_source_map %s "%self.source_map
                 installed_files.append(self.source_map)
